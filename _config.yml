@@ -120,12 +120,12 @@ sharing:
 comments:
   provider: gitalk # false (default), "disqus", "gitalk", "valine", "custom"
   gitalk:
-    clientID    : "57dbe8c502878872a2aa"
-    clientSecret: "56a02222dcb411d1a8e1dffa68e46aeb6c46f7bc"
-    repository  : "changshuchao/changshuchao.github.io"
-    owner       : "changshuchao"
+    clientID    : 57dbe8c502878872a2aa
+    clientSecret: 56a02222dcb411d1a8e1dffa68e46aeb6c46f7bc
+    repository  : changshuchao.github.io
+    owner       : changshuchao
     admin: # Github repo owner and collaborators, only these guys can initialize github issues, IT IS A LIST.
-      - "changshuchao"
+      - changshuchao
 
   ## Disqus
   disqus:
@@ -181,7 +181,7 @@ analytics:
   ## Google Analytics
   google:
     tracking_id : G-HBEJ2G4Z4Q # Google Analytics id for the site
-    anonymize_ip: true # Anonymize IP tracking for Analytics
+    anonymize_ip: false # Anonymize IP tracking for Analytics
 
 
 ## => Build
