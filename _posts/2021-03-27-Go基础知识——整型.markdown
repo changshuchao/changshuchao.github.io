@@ -6,6 +6,7 @@ aside:
   toc: true
 sidebar:
   nav: go-common-release
+permalink: /go-common/整型
 ---
 
 ### 1. 整型的10个类型图示
@@ -38,7 +39,7 @@ int8 int16 int32 int64 这几个类型的最后都有一个数值，这表明了
 
 
 
-### 4. 不同进制的表示方法（`0b`、`0o`、0x） 
+### 4. 不同进制的表示方法（0b、0o、0x） 
 
 2进制：以`0b`或`0B`为前缀
 

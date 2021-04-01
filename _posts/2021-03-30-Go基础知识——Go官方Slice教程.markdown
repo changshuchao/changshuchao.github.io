@@ -6,6 +6,7 @@ aside:
   toc: true
 sidebar:
   nav: go-common-release
+permalink: /go-common/Go官方Slice教程
 ---
 
 

@@ -6,24 +6,25 @@ aside:
   toc: true
 sidebar:
   nav: go-common-release
+permalink: /go-common/浮点型
 ---
 
 参考：
 
 http://golang.iswbm.com/en/latest/c01/c01_03.html
+
 http://c.biancheng.net/view/14.html
+
 https://blog.csdn.net/a451343010/article/details/113848415
 
 
 
 转换工具：
+
 进制转换 https://tool.lu/hexconvert/
+
 单精度浮点数转换 http://www.styb.cn/cms/ieee_754.php
 
-
-
-
-[TOC]
 
 
 

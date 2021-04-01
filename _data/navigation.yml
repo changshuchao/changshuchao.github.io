@@ -53,11 +53,11 @@ go-common-release:
   - title: Go基础知识
     children:
       - title:  整型
-        url:    /_posts/2021-03-27-Go基础知识——整型.markdown
+        url:    /go-common/整型
       - title:  浮点型
-        url:    /_posts/2021-03-27-Go基础知识——浮点型.markdown
+        url:    /go-common/浮点型
       - title:  byte、rune和字符串
-        url:    /_posts/2021-03-27-Go基础知识——byte、rune和字符串.markdown
+        url:    /go-common/字符串
       - title:  Go官方Slice教程
-        url:    /_posts/2021-03-30-Go基础知识——Go官方Slice教程.markdown
+        url:    /go-common/Go官方Slice教程
 
