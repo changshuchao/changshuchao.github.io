@@ -1,0 +1,180 @@
+---
+layout: post
+title: "Go并发学习10——锁（互斥锁和读写锁）"
+date: 2021-03-31
+image: 9.jpg
+tags: [Go基础知识,Go并发]
+categories: Go并发
+typora-root-url: ..
+---
+
+
+
+参考：
+
+[https://www.cnblogs.com/f-ck-need-u/p/9998729.html#适合syncmutex的数据类型](https://www.cnblogs.com/f-ck-need-u/p/9998729.html#适合syncmutex的数据类型)
+
+https://cloud.tencent.com/developer/article/1502039
+
+
+
+**在 Go  语言并发编程中，倡导「使用通信共享内存，不要使用共享内存通信」，而这个通信的媒介就是我们前面花大量篇幅介绍的通道（Channel），通道是线程安全的，不需要考虑数据冲突问题，面对并发问题，我们始终应该优先考虑使用通道，它是 first class 级别的。**
+
+但是一旦数据被多个线程共享，那么就很可能会产生争用和冲突的情况，这种情况也被称为竞态条件（race  condition），这往往会破坏共享数据的一致性。举个例子，同时有多个线程连续向同一个缓冲区写入数据块，如果没有一个机制去协调这些线程的写入操作的话，那么被写入的数据块就很可能会出现错乱。比如，学院君的支付宝账户余额还有 500 元，代表银行自动转账的线程 A 正在向账户转入 3000 元本月工资，同时代表花呗自动扣费的线程 B 正在从账户余额扣除 2000  元还上个月的花呗账单。假设用 money 标识账户余额，那么初始值 money = 500，线程 A 的操作就等价于 money = money + 3000，线程 B 的操作就等价于 money = money - 2000，我们本来期望的结果是 money = 1500，但是现在线程 A 和线程 B 同时对 money 进行读取和写入，所以他们拿到的 money 都是 500，如果线程 A 后执行完毕，那么 money =  3500，如果线程 B 后执行完毕，那么 money =  0（扣除所有余额，花呗欠款1500），这就出现了和预期结果不一致的现象，我们说，这个操作破坏了数据的一致性。
+
+
+
+一般来说，同步的用途有两个，一个是避免多个线程在同一时刻操作同一个数据块，另一个是协调多个线程避免它们在同一时刻执行同一个代码块。但是目的是一致的，那就是保证共享数据原子操作和一致性。
+
+
+
+只要一个代码片段需要实现对共享资源的串行化访问，就可以被视为一个临界区（critical section）。
+
+
+
+#### sync.Mutex
+
+每当有 goroutine 想进入临界区时，都需要先对它进行锁定，并且，每个 goroutine 离开临界区时，都要及时地对它进行解锁，锁定和解锁操作分别通过互斥锁 `sync.Mutex` 的 `Lock` 和 `Unlock` 方法实现。使用互斥锁的时候有以下注意事项：
+
+- 不要重复锁定互斥锁；
+- 不要忘记解锁互斥锁，必要时使用 `defer` 语句；
+- 不要对尚未锁定或者已解锁的互斥锁解锁；
+- 不要在多个函数之间直接传递互斥锁。
+
+
+
+示例：
+
+```go
+type simpleValue struct {
+    num  int
+    lock sync.Mutex
+}
+
+func (s *simpleValue) read() int {
+    s.lock.Lock()
+    defer s.lock.Unlock()
+    a := s.num
+    return a
+}
+
+func (s *simpleValue) change(i int) {
+    s.lock.Lock()
+    defer s.lock.Unlock()
+    fmt.Printf(" change : %d\n", s.num)
+    time.Sleep(1e9)
+    s.num = s.num + 1
+    if s.num%10 == 0 {
+        s.num = s.num - 10*i
+    }
+}
+
+func TestMutex() {
+    simple := &simpleValue{}
+    var wg sync.WaitGroup
+
+    for i := 0; i < 20; i++ {
+        wg.Add(1)
+        go func(num int) {
+            defer wg.Done()
+            simple.change(num)
+            fmt.Printf(" read : %d\n", simple.read())
+        }(i)
+
+    }
+
+    wg.Wait()
+}
+
+```
+
+
+
+#### sync.RWMutex
+
+Mutex 是最简单的一种锁类型，同时也比较暴力，当一个 goroutine 获得了 Mutex 后，其他 goroutine  就只能乖乖等到这个 goroutine 释放该  Mutex，不管是读操作还是写操作都会阻塞，但其实我们知道为了提升性能，读操作往往是不需要阻塞的，**因此 sync 包提供了 RWMutex  类型，即读/写互斥锁，简称读写锁，这是一个是单写多读模型**。
+
+
+
+`sync.RWMutex` 分读锁和写锁，会对读操作和写操作区分对待，**在读锁占用的情况下，会阻止写，但不阻止读，也就是多个 goroutine 可同时获取读锁**，读锁调用 `RLock()` 方法开启，通过 `RUnlock` 方法释放；而写锁会阻止任何其他 goroutine（无论读和写）进来，整个锁相当于由该 goroutine 独占，和 Mutex 一样，写锁通过 `Lock` 方法启用，通过 `Unlock` 方法释放。
+
+
+
+```go
+package main
+
+import (
+    "fmt"
+    "sync"
+    "time"
+)
+
+var(
+    myPass = &paasword{}
+)
+
+type paasword struct {
+    paas string
+    lock sync.RWMutex
+}
+
+func (p *paasword) change(newPass string) {
+    p.lock.Lock()
+    defer p.lock.Unlock()
+    fmt.Println("begin change")
+    time.Sleep(3 * time.Second)
+    p.paas = newPass
+    fmt.Println("end change")
+}
+
+func (p *paasword) read(num int) string {
+    p.lock.RLock()
+    defer p.lock.RUnlock()
+    fmt.Println("begin read in ",num)
+    time.Sleep(1e9)
+    fmt.Println("end read in ",num)
+    return p.paas
+}
+
+func TestRWMutex() {
+
+    var wg sync.WaitGroup
+
+    for i := 0; i < 6; i++ {
+        wg.Add(1)
+        go func(num int) {
+            defer wg.Done()
+            myPass.read(num)
+        }(i)
+    }
+
+    go func() {
+        wg.Add(1)
+        defer wg.Done()
+        myPass.change("12345")
+    }()
+
+    wg.Wait()
+}
+
+```
+
+输出：
+
+```bash
+begin change
+end change
+begin read in  0
+begin read in  1
+begin read in  3
+begin read in  4
+begin read in  5
+begin read in  2
+end read in  4
+end read in  5
+end read in  3
+end read in  1
+end read in  0
+end read in  2
+```
+

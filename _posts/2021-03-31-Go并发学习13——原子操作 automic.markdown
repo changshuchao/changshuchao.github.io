@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Go并发学习13——原子操作 automic"
+date: 2021-03-31
+image: 12.jpg
+tags: [Go基础知识,Go并发]
+categories: Go并发
+typora-root-url: ..
+---
+
+
+
+参考: https://cloud.tencent.com/developer/article/1514029

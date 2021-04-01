@@ -1,0 +1,74 @@
+---
+layout: post
+title: "Go并发学习8——错误和异常处理"
+date: 2021-03-31
+image: 7.jpg
+tags: [Go基础知识,Go并发]
+categories: Go并发
+typora-root-url: ..
+---
+
+
+
+### 超时处理机制实现
+
+Go 语言没有提供直接的超时处理机制，但我们可以借助 `select` 语句来实现类似机制解决超时问题，因为 `select`语句的特点是只要其中一个 `case` 对应的通道操作已经完成，程序就会继续往下执行，而不会考虑其他 `case` 的情况。
+
+```go
+func TimeoutBySelect() {
+    ch := make(chan int)
+
+    timeoutCh := make(chan int)
+
+    go func() {
+        time.Sleep(1e9)
+        timeoutCh <- 1
+        close(timeoutCh)
+    }()
+
+    select {
+    case <-ch:
+        fmt.Println("ok")
+    case <-timeoutCh:
+        fmt.Println("timeout")
+    }
+
+}
+
+```
+
+使用 `select` 语句可以避免永久等待的问题，因为程序会在从 `timeout` 通道中接收到数据后继续执行，无论对 `ch`的读取是否还处于等待状态，从而实现 1 秒超时的效果。这种写法看起来是一个编程小技巧，但却是在 Go 语言并发编程中避免通道通信超时的最有效方法。
+
+
+
+### 避免对已关闭通道进行操作
+
+为了避免对已关闭通道再度执行关闭操作引发 panic，一般我们约定只能在发送方关闭通道，而在接收方，我们则通过通道接收操作返回的第二个参数是否为 `false` 判定通道是否已经关闭，如果已经关闭，则不再执行发送操作。示例代码如下：
+
+```go
+func SendAndReceive() {
+
+    ch := make(chan int, 2)
+
+    go func() {
+        for i := 1; i < 5; i++ {
+            fmt.Printf("send : %v \n", i)
+            ch <- i
+        }
+        fmt.Println("close channel")
+        close(ch)
+
+    }()
+
+    for {
+        i, ok := <-ch
+        if ok {
+            fmt.Printf("receive : %v \n", i)
+        } else {
+            fmt.Println("channel is closed!")
+            break
+        }
+    }
+
+}
+```
