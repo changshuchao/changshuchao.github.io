@@ -3,9 +3,8 @@ layout: post
 title: "Go并发学习11——WaitGroup用法"
 date: 2021-03-31
 image: 10.jpg
-tags: [Go基础知识,Go并发]
+tags: Go并发
 categories: Go并发
-typora-root-url: ..
 ---
 
 参考： https://www.cnblogs.com/f-ck-need-u/p/10004787.html

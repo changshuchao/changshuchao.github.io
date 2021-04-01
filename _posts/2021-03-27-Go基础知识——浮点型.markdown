@@ -7,6 +7,8 @@ aside:
 sidebar:
   nav: go-common-release
 permalink: /go-common/浮点型
+header:
+  theme: forest
 ---
 
 参考：

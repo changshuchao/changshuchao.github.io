@@ -3,9 +3,8 @@ layout: post
 title: "Go并发学习1——并发思维导图"
 date: 2021-03-29
 image: 7.jpg
-tags: [Go基础知识,Go并发]
+tags: Go并发
 categories: Go并发
-typora-root-url: ..
 ---
 
 

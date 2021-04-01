@@ -7,6 +7,8 @@ aside:
 sidebar:
   nav: go-common-release
 permalink: /go-common/Go官方Slice教程
+header:
+  theme: forest
 ---
 
 
