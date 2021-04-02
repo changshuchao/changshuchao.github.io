@@ -1,10 +1,14 @@
 ---
-layout: post
-title: "Go并发学习6——chan：基本语法和缓冲通道"
-date: 2021-03-31
-image: 5.jpg
+layout: article
+title: "Go并发学习6——协程通信实现之消息传递"
 tags: Go并发
-categories: Go并发
+aside:
+  toc: true
+sidebar:
+  nav: go-bf-release
+permalink: /go-bf/chan基本语法和缓冲通道
+header:
+  theme: forest
 ---
 
 

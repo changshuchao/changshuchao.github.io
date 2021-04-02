@@ -1,10 +1,14 @@
 ---
-layout: post
+layout: article
 title: "Go并发学习1——并发思维导图"
-date: 2021-03-29
-image: 7.jpg
 tags: Go并发
-categories: Go并发
+aside:
+  toc: true
+sidebar:
+  nav: go-bf-release
+permalink: /go-bf/并发思维导图
+header:
+  theme: forest
 ---
 
 

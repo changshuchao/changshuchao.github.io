@@ -1,10 +1,14 @@
 ---
-layout: post
-title: "Go并发学习13——原子操作 automic"
-date: 2021-03-31
-image: 12.jpg
+layout: article
+title: "Go并发学习13——原子操作"
 tags: Go并发
-categories: Go并发
+aside:
+  toc: true
+sidebar:
+  nav: go-bf-release
+permalink: /go-bf/原子操作
+header:
+  theme: forest
 ---
 
 

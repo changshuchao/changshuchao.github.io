@@ -61,3 +61,32 @@ go-common-release:
       - title:  Go官方Slice教程
         url:    /go-common/Go官方Slice教程
 
+go-bf-release:
+  - title: Go并发学习
+    children:
+      - title:  并发思维导图
+        url:    /go-bf/并发思维导图
+      - title:  并发的几种实现和简介
+        url:    /go-bf/并发的几种实现和简介
+      - title:  Go协程实现原理和使用示例
+        url:    /go-bf/Go协程实现原理和使用示例
+      - title:  协程通信实现之共享内存实现(不推荐)
+        url:    /go-bf/协程通信实现之共享内存实现
+      - title:  协程通信实现之消息传递
+        url:    /go-bf/协程通信实现之消息传递
+      - title:  chan：基本语法和缓冲通道
+        url:    /go-bf/chan基本语法和缓冲通道
+      - title:  使用select
+        url:    /go-bf/使用select
+      - title:  错误和异常处理
+        url:    /go-bf/错误和异常处理
+      - title:  并行and并发
+        url:    /go-bf/并行and并发
+      - title:  互斥锁和读写锁
+        url:    /go-bf/互斥锁和读写锁
+      - title:  WaitGroup用法
+        url:    /go-bf/WaitGroup用法
+      - title:  sync.Cond
+        url:    /go-bf/Cond
+      - title:  原子操作
+        url:    /go-bf/原子操作

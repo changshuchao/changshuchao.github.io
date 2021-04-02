@@ -1,10 +1,14 @@
 ---
-layout: post
+layout: article
 title: "Go并发学习12——sync.Cond"
-date: 2021-03-31
-image: 11.jpg
 tags: Go并发
-categories: Go并发
+aside:
+  toc: true
+sidebar:
+  nav: go-bf-release
+permalink: /go-bf/Cond
+header:
+  theme: forest
 ---
 
 

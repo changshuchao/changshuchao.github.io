@@ -1,10 +1,14 @@
 ---
-layout: post
-title: "Go并发学习10——锁（互斥锁和读写锁）"
-date: 2021-03-31
-image: 9.jpg
+layout: article
+title: "Go并发学习10——互斥锁和读写锁"
 tags: Go并发
-categories: Go并发
+aside:
+  toc: true
+sidebar:
+  nav: go-bf-release
+permalink: /go-bf/互斥锁和读写锁
+header:
+  theme: forest
 ---
 
 

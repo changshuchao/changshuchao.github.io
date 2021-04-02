@@ -1,10 +1,14 @@
 ---
-layout: post
+layout: article
 title: "Go并发学习7——使用select"
-date: 2021-03-31
-image: 6.jpg
 tags: Go并发
-categories: Go并发
+aside:
+  toc: true
+sidebar:
+  nav: go-bf-release
+permalink: /go-bf/使用select
+header:
+  theme: forest
 ---
 
 

@@ -1,10 +1,14 @@
 ---
-layout: post
+layout: article
 title: "Go并发学习11——WaitGroup用法"
-date: 2021-03-31
-image: 10.jpg
 tags: Go并发
-categories: Go并发
+aside:
+  toc: true
+sidebar:
+  nav: go-bf-release
+permalink: /go-bf/WaitGroup用法
+header:
+  theme: forest
 ---
 
 参考： https://www.cnblogs.com/f-ck-need-u/p/10004787.html
