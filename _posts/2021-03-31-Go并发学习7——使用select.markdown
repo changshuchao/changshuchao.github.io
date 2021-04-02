@@ -10,6 +10,7 @@ permalink: /go-bf/使用select
 footer: false
 header:
   theme: forest
+key: go-bf-select
 ---
 
 

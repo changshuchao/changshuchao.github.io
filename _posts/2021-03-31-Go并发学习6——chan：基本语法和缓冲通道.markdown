@@ -10,6 +10,7 @@ permalink: /go-bf/chan基本语法和缓冲通道
 footer: false
 header:
   theme: forest
+key: go-bf-chan
 ---
 
 

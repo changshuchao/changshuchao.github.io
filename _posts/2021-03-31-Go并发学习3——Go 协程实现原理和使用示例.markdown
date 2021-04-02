@@ -10,6 +10,7 @@ permalink: /go-bf/Go协程实现原理和使用示例
 footer: false
 header:
   theme: forest
+key: go-bf-brief
 ---
 
 

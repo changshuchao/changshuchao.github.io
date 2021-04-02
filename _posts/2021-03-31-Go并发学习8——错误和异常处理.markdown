@@ -10,6 +10,7 @@ permalink: /go-bf/错误和异常处理
 footer: false
 header:
   theme: forest
+key: go-bf-catch
 ---
 
 

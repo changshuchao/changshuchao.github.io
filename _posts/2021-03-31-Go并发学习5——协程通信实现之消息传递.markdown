@@ -10,6 +10,7 @@ permalink: /go-bf/协程通信实现之消息传递
 footer: false
 header:
   theme: forest
+key: go-bf-message
 ---
 
 参考：https://cloud.tencent.com/developer/article/1494685

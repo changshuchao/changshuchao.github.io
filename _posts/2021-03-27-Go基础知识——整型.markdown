@@ -10,6 +10,7 @@ permalink: /go-common/整型
 header:
   theme: forest
 footer: false
+key: go-common-int
 ---
 
 ### 1. 整型的10个类型图示

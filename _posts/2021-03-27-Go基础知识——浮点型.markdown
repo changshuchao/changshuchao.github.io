@@ -10,6 +10,7 @@ permalink: /go-common/浮点型
 footer: false
 header:
   theme: forest
+key: go-common-float
 ---
 
 参考：

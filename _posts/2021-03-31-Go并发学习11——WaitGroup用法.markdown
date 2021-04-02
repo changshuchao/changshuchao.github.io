@@ -10,6 +10,7 @@ permalink: /go-bf/WaitGroup用法
 footer: false
 header:
   theme: forest
+key: go-bf-waitgroup
 ---
 
 参考： https://www.cnblogs.com/f-ck-need-u/p/10004787.html

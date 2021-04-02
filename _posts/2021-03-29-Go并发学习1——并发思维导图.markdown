@@ -10,6 +10,7 @@ permalink: /go-bf/并发思维导图
 footer: false
 header:
   theme: forest
+key: go-bf-graph
 ---
 
 

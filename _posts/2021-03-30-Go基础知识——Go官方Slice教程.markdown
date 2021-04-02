@@ -10,6 +10,7 @@ permalink: /go-common/Go官方Slice教程
 footer: false
 header:
   theme: forest
+key: go-common-slice-teach
 ---
 
 
