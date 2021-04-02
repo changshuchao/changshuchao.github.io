@@ -7,6 +7,7 @@ aside:
 sidebar:
   nav: go-bf-release
 permalink: /go-bf/WaitGroup用法
+footer: false
 header:
   theme: forest
 ---
