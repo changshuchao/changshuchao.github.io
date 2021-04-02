@@ -114,7 +114,7 @@ sharing:
   addthis:
     id: # AddThis pubid, e.g. ra-5xxxxxxxxxxx
 
-
+comment: true
 ## => Comments
 ##############################
 comments:
@@ -212,10 +212,11 @@ defaults:
       license: false
       aside:
         toc: true
-      show_edit_on_github: false
+      show_edit_on_github: true
       show_subscribe: false
       pageview: true
-      comment: true
+
+
 
 
 ## => Plugins
