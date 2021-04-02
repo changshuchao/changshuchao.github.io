@@ -124,7 +124,7 @@ comments:
     clientSecret: 56a02222dcb411d1a8e1dffa68e46aeb6c46f7bc
     repository  : changshuchao.github.io
     owner       : changshuchao
-    proxy       : https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token
+    proxy       : https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token
     admin: # Github repo owner and collaborators, only these guys can initialize github issues, IT IS A LIST.
       - changshuchao
 
