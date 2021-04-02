@@ -10,6 +10,7 @@ permalink: /go-common/字符串
 header:
   theme: forest
 footer: false
+key: go-common-string
 ---
 
 
