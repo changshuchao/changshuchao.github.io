@@ -9,6 +9,8 @@ sidebar:
 permalink: /go-common/字符串
 header:
   theme: forest
+footer: false
+comment: true
 ---
 
 
